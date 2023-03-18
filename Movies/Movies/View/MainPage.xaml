@@ -20,14 +20,24 @@
                 <DataTemplate x:DataType="model:Movie">
                     <Grid Padding="10">
                         <Frame HeightRequest="125"
-                               Padding="0">
+                               Padding="0"
+                               Style="{StaticResource CardView}">
                             <Grid Padding="0"
                                   ColumnDefinitions="125, *">
                                 
                                 <Image Aspect="AspectFill"
-                                       Source="{Binding Images[1]}"
+                                       Source="{Binding Images[0]}"
                                        WidthRequest="125"
                                        HeightRequest="125"/>
+                                <VerticalStackLayout Grid.Column="1"
+                                                     Padding="10"
+                                                     VerticalOptions="Start">
+                                    <Label Text="{Binding Title}" FontSize="18"/>
+                                    <Label Text="{Binding Type}" />
+                                    <Label Text="{Binding Year}" />
+                                    <Label Text="{Binding Rated}" />
+
+                                </VerticalStackLayout>
                             </Grid>
                         </Frame>
                     </Grid>
@@ -37,6 +47,7 @@
         </CollectionView>
 
         <Button Text="Get Movies"
+                Style="{StaticResource ButtonOutline}"
                 Command="{Binding GetMoviesCommand}"
                 IsEnabled="{Binding isNotBusy}"
                 Grid.Column="0"

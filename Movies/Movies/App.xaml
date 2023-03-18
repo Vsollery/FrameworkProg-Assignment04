@@ -8,6 +8,7 @@
             <Color x:Key="Primary">#FFC107</Color>
             <Color x:Key="PrimaryDark">#FFA000</Color>
             <Color x:Key="Accent">#00BCD4</Color>
+            <Color x:Key="Dark">#461111</Color>
 
             <Color x:Key="LightBackground">#FAF9F8</Color>
             <Color x:Key="DarkBackground">Black</Color>
@@ -50,11 +51,11 @@
             
             <Style x:Key="ButtonOutline" TargetType="Button">
                 <Setter Property="Background" Value="{StaticResource LightBackground}"/>
-                <Setter Property="TextColor" Value="{StaticResource Primary}"/>
-                <Setter Property="BorderColor" Value="{StaticResource Primary}"/>
+                <Setter Property="TextColor" Value="{StaticResource Dark}"/>
+                <Setter Property="BorderColor" Value="{StaticResource Dark}"/>
                 <Setter Property="BorderWidth" Value="2"/>
                 <Setter Property="HeightRequest" Value="40"/>
-                <Setter Property="CornerRadius" Value="20"/>
+                <Setter Property="CornerRadius" Value="15"/>
             </Style>
             <Style x:Key="CardView" TargetType="Frame">
                 <Setter Property="BorderColor" Value="#DDDDDD"/>
