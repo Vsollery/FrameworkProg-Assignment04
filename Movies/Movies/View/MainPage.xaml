@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model ="clr-namespace:Movies.Model"          
+             x:Class="Movies.View.MainPage">
+
+    <CollectionView>
+        <CollectionView.ItemsSource>
+            <x:Array Type="{x:Type model:Movies}">
+                <model:Movies Title="Avatar"
+                              Year="2009"
+                              Rated="PG-13"
+                              Poster="https://images-na.ssl-images-amazon.com/images/M/MV5BMTMwNTg5MzMwMV5BMl5BanBnXkFtZTcwMzA2NTIyMw@@._V1_SX1777_CR0,0,1777,937_AL_.jpg"/>
+                <model:Movies Title="Avatar"
+                              Year="2009"
+                              Rated="PG-13"
+                              Poster="http://ia.media-imdb.com/images/M/MV5BMTU4NzMyNDk1OV5BMl5BanBnXkFtZTcwOTEwMzU1MQ@@._V1_SX300.jpg"/>
+                <model:Movies Title="Avatar"
+                              Year="2009"
+                              Rated="PG-13"
+                              Poster="http://ia.media-imdb.com/images/M/MV5BMjAzNTkzNjcxNl5BMl5BanBnXkFtZTYwNDA4NjE3._V1_SX300.jpg"/>
+            </x:Array>
+        </CollectionView.ItemsSource>
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="model:Movies">
+                <HorizontalStackLayout Padding="10" Spacing="2">
+                    <Image Source="{Binding Poster}"
+                           HeightRequest="100"
+                           WidthRequest="100"/>
+                    <VerticalStackLayout Padding="10" Spacing="4" VerticalOptions="Center">
+                        <Label Text="{Binding Title}"/>
+                        <Label Text="{Binding Year}" />
+                        <Label Text="{Binding Rated}" />
+                     </VerticalStackLayout>
+                </HorizontalStackLayout>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+        
+    </CollectionView>
+
+    
+</ContentPage>
