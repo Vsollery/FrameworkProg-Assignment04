@@ -7,40 +7,49 @@
              Title="{Binding Title}"
              x:Class="Movies.View.MainPage">
 
-    <CollectionView>
-        <CollectionView.ItemsSource>
-            <x:Array Type="{x:Type model:Movie}">
-                <model:Movie Title="Avatar"
-                              Year="2009"
-                              Rated="PG-13"
-                              Poster="https://images-na.ssl-images-amazon.com/images/M/MV5BMTMwNTg5MzMwMV5BMl5BanBnXkFtZTcwMzA2NTIyMw@@._V1_SX1777_CR0,0,1777,937_AL_.jpg"/>
-                <model:Movie Title="Avatar"
-                              Year="2009"
-                              Rated="PG-13"
-                              Poster="http://ia.media-imdb.com/images/M/MV5BMTU4NzMyNDk1OV5BMl5BanBnXkFtZTcwOTEwMzU1MQ@@._V1_SX300.jpg"/>
-                <model:Movie Title="Avatar"
-                              Year="2009"
-                              Rated="PG-13"
-                              Poster="http://ia.media-imdb.com/images/M/MV5BMjAzNTkzNjcxNl5BMl5BanBnXkFtZTYwNDA4NjE3._V1_SX300.jpg"/>
-            </x:Array>
-        </CollectionView.ItemsSource>
-        <CollectionView.ItemTemplate>
-            <DataTemplate x:DataType="model:Movie">
-                <HorizontalStackLayout Padding="10" Spacing="2">
-                    <Image Source="{Binding Poster}"
-                           HeightRequest="100"
-                           WidthRequest="100"
-                           />
-                    <VerticalStackLayout Padding="10" Spacing="4" VerticalOptions="Center">
-                        <Label Text="{Binding Title}"/>
-                        <Label Text="{Binding Year}" />
-                        <Label Text="{Binding Rated}" />
-                     </VerticalStackLayout>
-                </HorizontalStackLayout>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-        
-    </CollectionView>
+    <Grid ColumnDefinitions="*,*"
+          ColumnSpacing="5"
+          RowDefinitions="*,Auto">
 
-    
+        <CollectionView Background="Transparent"
+                        Grid.ColumnSpan="2"
+                        ItemsSource="{Binding Movies}"
+                        SelectionMode="None">
+            
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:Movie">
+                    <Grid Padding="10">
+                        <Frame HeightRequest="125"
+                               Padding="0">
+                            <Grid Padding="0"
+                                  ColumnDefinitions="125, *">
+                                
+                                <Image Aspect="AspectFill"
+                                       Source="{Binding Images[1]}"
+                                       WidthRequest="125"
+                                       HeightRequest="125"/>
+                            </Grid>
+                        </Frame>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+            
+        </CollectionView>
+
+        <Button Text="Get Movies"
+                Command="{Binding GetMoviesCommand}"
+                IsEnabled="{Binding isNotBusy}"
+                Grid.Column="0"
+                Grid.Row="1"
+                Margin="8"/>
+        
+        <ActivityIndicator IsVisible="{Binding IsBusy}"
+                           IsRunning= "{Binding IsBusy}"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="CenterAndExpand"
+                           Grid.RowSpan="2"
+                           Grid.ColumnSpan="2" />
+
+    </Grid>
+
 </ContentPage>
