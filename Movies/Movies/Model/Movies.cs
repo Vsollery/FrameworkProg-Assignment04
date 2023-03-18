@@ -1,6 +1,6 @@
 ﻿namespace Movies.Model;
 
-public class Movies
+public class Movie
 {  
     public string Title { get; set; }
     public string Year { get; set; }
