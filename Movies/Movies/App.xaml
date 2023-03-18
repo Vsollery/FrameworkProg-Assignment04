@@ -20,7 +20,7 @@
 
 			<Style ApplyToDerivedTypes="True" TargetType="NavigationPage">
 				<Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}" />
-				<Setter Property="BarBackgroundColor" Value="{StaticResource Primary}" />
+				<Setter Property="BarBackgroundColor" Value="{StaticResource Dark}" />
 				<Setter Property="BarTextColor" Value="White" />
 			</Style>
 
@@ -46,7 +46,7 @@
             </Style>
 
             <Style TargetType="RefreshView" ApplyToDerivedTypes="True">
-                <Setter Property="RefreshColor" Value="{StaticResource Primary}" />
+                <Setter Property="RefreshColor" Value="{StaticResource Dark}" />
             </Style>
             
             <Style x:Key="ButtonOutline" TargetType="Button">

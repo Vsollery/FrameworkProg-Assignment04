@@ -11,7 +11,19 @@ public partial class MoviesViewModel : BaseViewModel
         Title = "Movies";
         this.moviesService = moviesService;
      
-     }
+    }
+
+    [RelayCommand]
+    async Task GotoDetailsASync(Movie movie)
+    {
+        if(movie is null) return;
+
+        await Shell.Current.GoToAsync($"{nameof(DetailsPage)}",true,
+            new Dictionary<string, object>
+            {
+                {"Movie", movie }
+            });
+    }
 
     [RelayCommand]
     async Task GetMoviesAsync()

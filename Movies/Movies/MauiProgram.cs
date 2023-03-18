@@ -22,7 +22,9 @@ public static class MauiProgram
 #endif
 		builder.Services.AddSingleton<MoviesService>();
         builder.Services.AddSingleton<MoviesViewModel>();
+		builder.Services.AddTransient<MoviesDetailsViewModel>();
         builder.Services.AddSingleton<MainPage>();
+		builder.Services.AddTransient<DetailsPage>();
 
 
 		return builder.Build();
