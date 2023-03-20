@@ -6,11 +6,16 @@ public partial class MoviesViewModel : BaseViewModel
     MoviesService moviesService;
     public ObservableCollection<Movie> Movies { get; } = new();
 
-    public MoviesViewModel(MoviesService moviesService)
+    IConnectivity connectivity;
+
+    [ObservableProperty]
+    bool isRefreshing;
+
+    public MoviesViewModel(MoviesService moviesService, IConnectivity connectivity)
     {
         Title = "Movies";
         this.moviesService = moviesService;
-     
+        this.connectivity = connectivity;
     }
 
     [RelayCommand]
@@ -32,6 +37,11 @@ public partial class MoviesViewModel : BaseViewModel
 
         try
         {
+            if(connectivity.NetworkAccess != NetworkAccess.Internet)
+            {
+                await Shell.Current.DisplayAlert("Internet Issue", $"Check Your Internet and Try Again", "OK");
+                return;
+            }
             IsBusy = true;
             var movies = await moviesService.GetMovies();
 
@@ -52,6 +62,7 @@ public partial class MoviesViewModel : BaseViewModel
         finally 
         { 
             IsBusy = false;
+            isRefreshing = false;
         }
     }
 

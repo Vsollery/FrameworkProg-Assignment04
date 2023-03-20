@@ -20,6 +20,7 @@ public static class MauiProgram
 #if DEBUG
 		builder.Logging.AddDebug();
 #endif
+		builder.Services.AddSingleton<IConnectivity>(Connectivity.Current);
 		builder.Services.AddSingleton<MoviesService>();
         builder.Services.AddSingleton<MoviesViewModel>();
 		builder.Services.AddTransient<MoviesDetailsViewModel>();

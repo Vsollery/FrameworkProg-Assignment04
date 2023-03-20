@@ -3,58 +3,67 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:model ="clr-namespace:Movies.Model" 
              xmlns:viewmodel ="clr-namespace:Movies.ViewModel"
+             xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
              x:DataType="viewmodel:MoviesViewModel"
              Title="{Binding Title}"
+             ios:Page.UseSafeArea="True"           
              x:Class="Movies.View.MainPage">
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="REFRESH" />
+    </ContentPage.ToolbarItems>
 
     <Grid ColumnDefinitions="*,*"
           ColumnSpacing="5"
           RowDefinitions="*,Auto">
 
-        <CollectionView Background="Transparent"
-                        Grid.ColumnSpan="2"
-                        ItemsSource="{Binding Movies}"
-                        SelectionMode="None">
-            
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="model:Movie">
-                    <Grid Padding="10">
-                        <Frame HeightRequest="125"
-                               Padding="0"
-                               Style="{StaticResource CardView}">
-                            <Frame.GestureRecognizers>
-                                <TapGestureRecognizer CommandParameter="{Binding .}"
-                                                      Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MoviesViewModel}}, Path=GotoDetailsASyncCommand}" />
-                            </Frame.GestureRecognizers>
-                            <Grid Padding="0"
-                                  ColumnDefinitions="125, *">
-                                
-                                <Image Aspect="AspectFill"
-                                       Source="{Binding Images[0]}"
-                                       WidthRequest="125"
-                                       HeightRequest="125"/>
-                                <VerticalStackLayout Grid.Column="1"
-                                                     Padding="10"
-                                                     VerticalOptions="Start">
-                                    <Label Text="{Binding Title}" FontSize="18"/>
-                                    <Label Text="{Binding Type}" />
-                                    <Label Text="{Binding Year}" />
-                                    <Label Text="{Binding Rated}" />
+        <RefreshView Grid.ColumnSpan="2"
+                     Command="{Binding GetMoviesCommand}"
+                     IsRefreshing="{Binding IsRefreshing}">
+            <CollectionView Background="Transparent"                         
+                            ItemsSource="{Binding Movies}"
+                            SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Movie">
+                        <Grid Padding="10">
+                            <Frame HeightRequest="125"
+                                   Padding="0"
+                                   Style="{StaticResource CardView}">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer CommandParameter="{Binding .}"
+                                                          Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MoviesViewModel}}, Path=GotoDetailsASyncCommand}" />
+                                </Frame.GestureRecognizers>
+                                <Grid Padding="0"
+                                      ColumnDefinitions="125, *">
 
-                                </VerticalStackLayout>
-                            </Grid>
-                        </Frame>
-                    </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-            
-        </CollectionView>
+                                    <Image Aspect="AspectFill"
+                                           Source="{Binding Images[0]}"
+                                           WidthRequest="125"
+                                           HeightRequest="125"/>
+                                    <VerticalStackLayout Grid.Column="1"
+                                                         Padding="10"
+                                                         VerticalOptions="Start">
+                                        <Label Text="{Binding Title}" FontSize="18"/>
+                                        <Label Text="{Binding Type}" />
+                                        <Label Text="{Binding Year}" />
+                                        <Label Text="{Binding Rated}" />
+
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+        </RefreshView>
 
         <Button Text="Get Movies"
                 Style="{StaticResource ButtonOutline}"
                 Command="{Binding GetMoviesCommand}"
                 IsEnabled="{Binding isNotBusy}"
-                Grid.Column="0"
+                HorizontalOptions="Center"
+                Grid.ColumnSpan="2"
                 Grid.Row="1"
                 Margin="8"/>
         

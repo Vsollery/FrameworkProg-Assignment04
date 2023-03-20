@@ -113,9 +113,10 @@
                            Source="{Binding Movie.Images[4]}" />
                 </Frame>
             </Grid>
-            <Frame HeightRequest="250"
+            <Frame HeightRequest="200"
                    WidthRequest="200"
                    BackgroundColor="LightGrey"
+                   HasShadow="True"
                    CornerRadius="5"
                    Margin="10">
 
