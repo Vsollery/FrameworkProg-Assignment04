@@ -23,6 +23,19 @@
             <CollectionView Background="Transparent"                         
                             ItemsSource="{Binding Movies}"
                             SelectionMode="None">
+                <CollectionView.EmptyView>
+                    <StackLayout VerticalOptions="Center"
+                                 HorizontalOptions="Center"
+                                 WidthRequest="200"
+                                 HeightRequest="200">
+                        <Image Source="nodata.png"
+                               HorizontalOptions="CenterAndExpand"
+                               VerticalOptions="CenterAndExpand"
+                               Aspect="AspectFill"/>
+                        <Label Text="Click Get Movies to see list of movies!"
+                               HorizontalOptions="Fill"/>
+                    </StackLayout>
+                </CollectionView.EmptyView>
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:Movie">
                         <Grid Padding="10">
