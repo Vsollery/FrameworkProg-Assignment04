@@ -10,4 +10,10 @@ public partial class MoviesDetailsViewModel : BaseViewModel
 
     [ObservableProperty]
     Movie movie;
+
+    [RelayCommand]
+    async Task GoBackAsync()
+    {
+        await Shell.Current.GoToAsync("..");
+    }
 }
