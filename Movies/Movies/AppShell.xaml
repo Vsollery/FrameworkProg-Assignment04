@@ -10,7 +10,7 @@
     <Shell.Resources>
         <ResourceDictionary>
             <Style x:Key="BaseStyle" TargetType="Element">
-                <Setter Property="Shell.BackgroundColor" Value="{StaticResource Dark}" />
+                <Setter Property="Shell.BackgroundColor" Value="{StaticResource newDark}" />
                 <Setter Property="Shell.ForegroundColor" Value="{OnPlatform WinUI={StaticResource Dark}, Default=White}" />
                 <Setter Property="Shell.TitleColor" Value="White" />
                 <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />

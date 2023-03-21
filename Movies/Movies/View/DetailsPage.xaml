@@ -11,7 +11,7 @@
             <Grid ColumnDefinitions="*, Auto, *"
                   RowDefinitions="160, Auto" >
 
-                <BoxView BackgroundColor="{StaticResource Dark}"
+                <BoxView BackgroundColor="{StaticResource newDark}"
                          Grid.ColumnSpan="3"
                          HeightRequest="160"
                          HorizontalOptions="FillAndExpand" />
@@ -40,12 +40,12 @@
                 <Label Text="{Binding Movie.Title}"
                        Style="{StaticResource LargeLabel}"
                        HorizontalOptions="Center"/>
-                <Label Text="{Binding Movie.Released, StringFormat='Released Date: {0}'}" />
-                <Label Text="{Binding Movie.Rated, StringFormat='Rated: {0}'}"/>
-                <Label Text="{Binding Movie.Runtime, StringFormat='Runtime: {0}'}" />
+                <Label Text="{Binding Movie.Released, StringFormat='Released Date: {0}'}" Style="{StaticResource MediumLabel}" />
+                <Label Text="{Binding Movie.Rated, StringFormat='Rated: {0}'}" Style="{StaticResource SmallLabel}"/>
+                <Label Text="{Binding Movie.Runtime, StringFormat='Runtime: {0}'}" Style="{StaticResource SmallLabel}" />
                 <Label Text="Plot :"
                        Style="{StaticResource MediumLabel}"/>
-                <Label Text="{Binding Movie.Plot}" />
+                <Label Text="{Binding Movie.Plot}" Style="{StaticResource SmallLabel}"/>
                 <Label Text="Previews: " 
                        Style="{StaticResource MediumLabel}"/>
             </VerticalStackLayout>
@@ -54,9 +54,7 @@
                   ColumnDefinitions="*,*">
                 <Frame Grid.Row="0"
                        Grid.Column="0"
-                       HeightRequest="150"
-                       WidthRequest="150"
-                       CornerRadius="10"
+                       Style="{StaticResource CardView}"
                        Margin="8">
 
                     <Image Aspect="AspectFit"
@@ -69,11 +67,7 @@
                 </Frame>
                 <Frame Grid.Row="0"
                        Grid.Column="1"
-                       HeightRequest="150"
-                       IsClippedToBounds="True"
-                       Padding="10"
-                       WidthRequest="150"
-                       CornerRadius="10"
+                       Style="{StaticResource CardView}"
                        Margin="8">
 
                     <Image Aspect="AspectFit"
@@ -86,9 +80,7 @@
                 </Frame>
                 <Frame Grid.Row="1"
                        Grid.Column="0"
-                       HeightRequest="150"
-                       IsClippedToBounds="True"
-                       CornerRadius="10"
+                       Style="{StaticResource CardView}"
                        Margin="8">
 
                     <Image Aspect="AspectFit"
@@ -100,10 +92,9 @@
                 </Frame>
                 <Frame Grid.Row="1"
                        Grid.Column="1"
-                       HeightRequest="150"
-                       IsClippedToBounds="True"
-                       CornerRadius="10"
+                       Style="{StaticResource CardView}"
                        Margin="8">
+                       
 
                     <Image Aspect="AspectFit"
                            HeightRequest="150"
@@ -115,31 +106,29 @@
             </Grid>
             <Frame HeightRequest="200"
                    WidthRequest="200"
-                   BackgroundColor="LightGrey"
+                   BackgroundColor="{AppThemeBinding Light=#F9DBBB, Dark=#4D455D}"
                    HasShadow="True"
                    CornerRadius="5"
                    Margin="10">
 
                 <VerticalStackLayout Spacing="5">
-                    <Label Text="Casts:" 
-                           FontSize="17"/>
-                    <Label Text="{Binding Movie.Director, StringFormat='Director: {0}'}" />
-                    <Label Text="{Binding Movie.Actors, StringFormat='Actor/Actresses: {0}'}" />
-                    <Label Text="{Binding Movie.Writer, StringFormat='Writer: {0}'}"/>
+                    <Label Text="Casts:" Style="{StaticResource MediumLabel}"/>
+                    <Label Text="{Binding Movie.Director, StringFormat='Director: {0}'}" Style="{StaticResource SmallLabel}" />
+                    <Label Text="{Binding Movie.Actors, StringFormat='Actor/Actresses: {0}'}" Style="{StaticResource SmallLabel}"/>
+                    <Label Text="{Binding Movie.Writer, StringFormat='Writer: {0}'}" Style="{StaticResource SmallLabel}"/>
                 </VerticalStackLayout>
             </Frame>
             <Frame HeightRequest="200"
                    WidthRequest="200"
-                   BackgroundColor="LightGrey"
+                   BackgroundColor="{AppThemeBinding Light=#F9DBBB, Dark=#4D455D}"
                    CornerRadius="5"
                    Margin="10">
 
                 <VerticalStackLayout Spacing="5">
-                    <Label Text="Other Information:" 
-                           FontSize="17"/>
-                    <Label Text="{Binding Movie.Language, StringFormat='Available Languages: {0}'}" />
-                    <Label Text="{Binding Movie.Awards, StringFormat='Awards: {0}'}" />
-                    <Label Text="{Binding Movie.imdbRating, StringFormat='Ratings: {0}'}"/>
+                    <Label Text="Other Information:" Style="{StaticResource MediumLabel}" />
+                    <Label Text="{Binding Movie.Language, StringFormat='Available Languages: {0}'}" Style="{StaticResource SmallLabel}" />
+                    <Label Text="{Binding Movie.Awards, StringFormat='Awards: {0}'}" Style="{StaticResource SmallLabel}" />
+                    <Label Text="{Binding Movie.imdbRating, StringFormat='Ratings: {0}'}" Style="{StaticResource SmallLabel}"/>
                 </VerticalStackLayout>
             </Frame>
         </VerticalStackLayout>

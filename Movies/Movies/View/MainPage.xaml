@@ -9,10 +9,6 @@
              ios:Page.UseSafeArea="True"           
              x:Class="Movies.View.MainPage">
     
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="REFRESH" />
-    </ContentPage.ToolbarItems>
-
     <Grid ColumnDefinitions="*,*"
           ColumnSpacing="5"
           RowDefinitions="*,Auto">
@@ -56,10 +52,10 @@
                                     <VerticalStackLayout Grid.Column="1"
                                                          Padding="10"
                                                          VerticalOptions="Start">
-                                        <Label Text="{Binding Title}" FontSize="18"/>
-                                        <Label Text="{Binding Type}" />
-                                        <Label Text="{Binding Year}" />
-                                        <Label Text="{Binding Rated}" />
+                                        <Label Text="{Binding Title}" Style="{StaticResource LargeLabel}"/>
+                                        <Label Text="{Binding Type}"  Style="{StaticResource MediumLabel}"/>
+                                        <Label Text="{Binding Year}" Style="{StaticResource SmallLabel}"/>
+                                        <Label Text="{Binding Rated}" Style="{StaticResource SmallLabel}"/>
 
                                     </VerticalStackLayout>
                                 </Grid>
@@ -82,6 +78,7 @@
         
         <ActivityIndicator IsVisible="{Binding IsBusy}"
                            IsRunning= "{Binding IsBusy}"
+                           Color="{StaticResource newDark}"
                            HorizontalOptions="FillAndExpand"
                            VerticalOptions="CenterAndExpand"
                            Grid.RowSpan="2"
