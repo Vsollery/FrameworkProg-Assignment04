@@ -17,6 +17,10 @@ For this assignment I chose to use a json data about movies and series. This dat
 ### Application should be able to detect the internet connection status.
 ##
 
+<img src="./resources/Connectivity.gif" width="20%" height="20%"/>
+
+##
+
 ### Add the adaptive theme functionality to your apps.
 ##
 
