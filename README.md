@@ -110,9 +110,48 @@ For this assignment, I chose to use a JSON data about movies and series. This da
     <img src="./resources/Connectivity.gif" width="20%" height="20%"/>
 </div>
 
+<img src="./resources/transparent.png" height=50 width=150 /><!--invisible-->
+
+From the result above, the internet is turned off. And when we try to press `Get Movie` button it will not load, but instean it will display an alert informing user to check their interner connection.
+
+Checking Internet:
+
+```c#
+if(connectivity.NetworkAccess != NetworkAccess.Internet)
+    {
+        await Shell.Current.DisplayAlert("Internet Issue", $"Check Your Internet and Try Again", "OK");
+        return;
+    }
+```
+
 
 ##
 
 ### Add the adaptive theme functionality to your apps.
 ##
+
+<div align="center">  
+ <P> LIGHT THEME </p>
+</div>
+
+<div align="center">  
+  <span><img src="./resources/LightMainPage.jpeg" width="20%" height="20%"/></span>
+  <img src="./resources/transparent.png" height=50 width=150 /><!--invisible-->
+  <span><img src="./resources/LightDetailsPage.jpeg" width="20%" height="20%"/></span>
+</div>
+
+<img src="./resources/transparent.png" height=50 width=150 /><!--invisible-->
+
+<div align="center">  
+ <p>DARK THEME</p>
+</div>
+
+<div align="center">  
+  <span><img src="./resources/DarkMainPage.jpeg" width="20%" height="20%"/></span>
+  <img src="./resources/transparent.png" height=50 width=150 /><!--invisible-->
+  <span><img src="./resources/DarkDetailsPage.jpeg" width="20%" height="20%"/></span>
+</div>
+ <img src="./resources/transparent.png" height=50 width=150 /><!--invisible-->
+
+The AppThemeBinding markup extension can be used to consume resources for both light and dark themes. Using this method, resources are automatically assigned in accordance with the value of the active system theme.
 
