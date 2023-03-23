@@ -97,6 +97,76 @@ For this assignment, I chose to use a JSON data about movies and series. This da
   <span>Details Page</span>
 </div>
 
+ <img src="./resources/transparent.png" height=30 width=300 /><!--invisible-->
+ 
+The users can click on the `Get Movies` which will display all movies/series in the Main Page. The data is fetch from the internet using a http request. In addition, if the users wants to know more information about a specific movie/series they can click on the movie/series, which will lead them to the details page.
+
+Fetching data from internet: 
+
+```c#
+var url = "https://raw.githubusercontent.com/Vsollery/FrameworkProg-Assignment04/main/Movies/Movies/Resources/Raw/Movies.json";
+
+var response = await httpClient.GetAsync(url);
+
+if (response.IsSuccessStatusCode)
+{
+    moviesList = await response.Content.ReadFromJsonAsync<List<Movie>>();
+}
+
+```
+
+```c#
+async Task GetMoviesAsync()
+{
+    if(IsBusy) return;
+    try
+    {
+        if(connectivity.NetworkAccess != NetworkAccess.Internet)
+        {
+            await Shell.Current.DisplayAlert("Internet Issue", $"Check Your Internet and Try Again", "OK");
+            return;
+        }
+        IsBusy = true;
+        var movies = await moviesService.GetMovies();
+
+        if(Movies.Count != 0)
+            Movies.Clear();
+
+        foreach(var movie in movies)
+        {
+            Movies.Add(movie);
+        }
+
+    }catch(Exception ex)
+    {   
+       Debug.WriteLine(ex);
+        await Shell.Current.DisplayAlert("Error!", $"Unable to get Movies: {ex.Message}", "OK");
+    }
+    finally 
+    { 
+        IsBusy = false;
+        isRefreshing = false;
+    }
+}
+```
+
+Go to details page:
+
+```c#
+async Task GotoDetailsASync(Movie movie)
+{
+    if(movie is null) return;
+
+    await Shell.Current.GoToAsync($"{nameof(DetailsPage)}",true,
+        new Dictionary<string, object>
+        {
+            {"Movie", movie }
+        });
+}
+```
+
+
+
 
  
 
@@ -112,7 +182,7 @@ For this assignment, I chose to use a JSON data about movies and series. This da
 
 <img src="./resources/transparent.png" height=50 width=150 /><!--invisible-->
 
-From the result above, the internet is turned off. And when we try to press `Get Movie` button it will not load, but instean it will display an alert informing user to check their interner connection.
+From the result above, the internet is turned off. And when we try to press `Get Movie` button it will not load, but instead it will display an alert informing user to check their interner connection.
 
 Checking Internet:
 
@@ -123,7 +193,6 @@ if(connectivity.NetworkAccess != NetworkAccess.Internet)
         return;
     }
 ```
-
 
 ##
 
@@ -152,6 +221,21 @@ if(connectivity.NetworkAccess != NetworkAccess.Internet)
   <span><img src="./resources/DarkDetailsPage.jpeg" width="20%" height="20%"/></span>
 </div>
  <img src="./resources/transparent.png" height=50 width=150 /><!--invisible-->
+ 
+ Example:
+ 
+ ```c#
+ <Style x:Key="ButtonOutline" TargetType="Button">
+    <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}"/>
+    <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LabelText}, Dark={StaticResource LabelTextDark}}" />
+    <Setter Property="BorderColor" Value="{AppThemeBinding Light={StaticResource newDark}, Dark={StaticResource LightBackground}}"/>
+    <Setter Property="BorderWidth" Value="2"/>
+    <Setter Property="HeightRequest" Value="40"/>
+    <Setter Property="CornerRadius" Value="15"/>
+</Style>
+ ```
+ 
+Above is an example targeting the Button. So when a button using `Style="{StaticResource ButtonOutline}"` it will automatically apply all the styles that has been set.
 
 The AppThemeBinding markup extension can be used to consume resources for both light and dark themes. Using this method, resources are automatically assigned in accordance with the value of the active system theme.
 
